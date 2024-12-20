@@ -1,0 +1,1 @@
+# skt_hotel_api
