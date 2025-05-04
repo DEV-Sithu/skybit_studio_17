@@ -1,12 +1,244 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to my websites</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio - My Applications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        /* Header with Developer Profile */
+        .main-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .developer-info {
+            flex: 1;
+        }
+
+        .developer-name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .developer-title {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            margin-bottom: 1rem;
+        }
+
+        .developer-bio {
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: #3498db;
+        }
+
+        /* Applications Section */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .apps-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            font-size: 2.5rem;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .app-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .app-title {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .app-description {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .developer-name {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .apps-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-   <p>  Shue Khin Tar Guest House</p></body>
+    <!-- Developer Profile Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <img src="profile-placeholder.jpg" alt="Developer Photo" class="profile-img">
+            <div class="developer-info">
+                <h1 class="developer-name">Alex Smith</h1>
+                <p class="developer-title">Full Stack Developer & App Creator</p>
+                <p class="developer-bio">
+                    Passionate software developer with 7+ years of experience in creating innovative applications.
+                    Specializing in cross-platform solutions and user-centric design. Open-source contributor
+                    and tech community advocate.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-dev"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Applications Section -->
+    <div class="container">
+        <h2 class="apps-title">My Applications</h2>
+        <div class="app-grid">
+            <!-- App 1 -->
+            <div class="app-card">
+                <img src="app1.jpg" alt="App 1 Preview" class="app-image">
+                <h3 class="app-title">TaskMaster Pro</h3>
+                <div class="app-meta">
+                    <span>v2.1.4</span>
+                    <span>Windows/Mac</span>
+                </div>
+                <p class="app-description">
+                    Advanced task management solution with cloud sync and team collaboration features.
+                </p>
+                <a href="#" class="download-btn">Download (64MB)</a>
+            </div>
+
+            <!-- App 2 -->
+            <div class="app-card">
+                <img src="app2.jpg" alt="App 2 Preview" class="app-image">
+                <h3 class="app-title">PhotoEditor X</h3>
+                <div class="app-meta">
+                    <span>v1.0.0</span>
+                    <span>Multi-platform</span>
+                </div>
+                <p class="app-description">
+                    Professional photo editing software with AI-powered tools and filters.
+                </p>
+                <a href="#" class="download-btn">Download (128MB)</a>
+            </div>
+
+            <!-- Add more app cards as needed -->
+        </div>
+    </div>
+</body>
 </html>
