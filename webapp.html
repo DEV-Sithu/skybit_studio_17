@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ChannelMyanmar WebApp</title>
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 90%;
+      border: none;
+    }
+    button {
+      width: 100%;
+      height: 10%;
+      font-size: 18px;
+      background-color: #0088cc;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="site" src="https://www.channelmyanmar.to"></iframe>
+  <button onclick="sendUrl()">Send This URL to Bot</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    const iframe = document.getElementById("site");
+
+    function sendUrl() {
+      const currentUrl = iframe.contentWindow.location.href;
+      fetch("/send-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          url: currentUrl,
+          chat_id: tg.initDataUnsafe?.user?.id || 0
+        })
+      }).then(() => {
+        tg.close();
+      });
+    }
+
+    tg.expand();
+  </script>
+</body>
+</html>
