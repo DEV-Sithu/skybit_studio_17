@@ -1,68 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
   <title>ChannelMyanmar WebApp</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      background-color: #0088cc;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    a {
-      text-align: center;
-      display: block;
-      margin-top: 20px;
-      color: #0088cc;
-      font-weight: bold;
-    }
+    body { font-family: Arial; margin: 20px; }
+    #links a { display: block; margin: 5px 0; color: blue; cursor: pointer; }
+    #links a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h2>🌐 ChannelMyanmar Link Sender</h2>
 
-  <a href="https://www.channelmyanmar.to" target="_blank">➡️ Open ChannelMyanmar</a>
+<h2>ChannelMyanmar Scraped Links</h2>
 
-  <input type="text" id="urlInput" placeholder="Paste ChannelMyanmar URL here">
+<input type="text" id="url" placeholder="Enter ChannelMyanmar URL" style="width: 100%; padding: 8px;">
+<button onclick="loadPage()">Load Page</button>
 
-  <button onclick="sendToBot()">Send URL to Bot</button>
+<div id="links"></div>
 
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
+<script>
+const tg = window.Telegram.WebApp;
+tg.expand();
 
-    function sendToBot() {
-      const url = document.getElementById("urlInput").value;
-      if (url) {
-        tg.sendData(url);
-        tg.close();
-      } else {
-        alert("Please enter a URL.");
-      }
-    }
-  </script>
+async function loadPage() {
+  const url = document.getElementById("url").value.trim();
+  if (!url) return alert("Enter a URL");
+
+  // Fetch scraped data from FastAPI server
+  const res = await fetch(`http://localhost:8000/scrape?url=${encodeURIComponent(url)}`);
+  const data = await res.json();
+
+  const linksDiv = document.getElementById("links");
+  linksDiv.innerHTML = `<h3>${data.title}</h3>`;
+  
+  data.links.forEach(link => {
+    const a = document.createElement('a');
+    a.textContent = link;
+    a.href = "#";
+    a.onclick = () => {
+      tg.sendData(link);
+      tg.close();
+    };
+    linksDiv.appendChild(a);
+  });
+}
+</script>
+
 </body>
 </html>
