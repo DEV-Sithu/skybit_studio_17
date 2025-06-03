@@ -1,51 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>ChannelMyanmar WebApp</title>
   <style>
-    body, html {
-      margin: 0;
-      height: 100%;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f2f2f2;
     }
-    iframe {
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    input[type="text"] {
       width: 100%;
-      height: 90%;
-      border: none;
+      padding: 12px;
+      font-size: 16px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 8px;
     }
     button {
       width: 100%;
-      height: 10%;
-      font-size: 18px;
+      padding: 12px;
       background-color: #0088cc;
       color: white;
       border: none;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 16px;
+      color: #0088cc;
     }
   </style>
 </head>
 <body>
-  <iframe id="site" src="https://www.channelmyanmar.to"></iframe>
-  <button onclick="sendUrl()">Send This URL to Bot</button>
+  <h2>🌐 ChannelMyanmar URL Sender</h2>
+
+  <a href="https://www.channelmyanmar.to" target="_blank">➡️ Go to ChannelMyanmar</a>
+
+  <input type="text" id="urlInput" placeholder="Paste ChannelMyanmar URL here..." value="https://www.channelmyanmar.to">
+
+  <button onclick="sendUrlToBot()">Send URL to Bot</button>
 
   <script>
     const tg = window.Telegram.WebApp;
-    const iframe = document.getElementById("site");
-
-    function sendUrl() {
-      const currentUrl = iframe.contentWindow.location.href;
-      fetch("/send-url", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          url: currentUrl,
-          chat_id: tg.initDataUnsafe?.user?.id || 0
-        })
-      }).then(() => {
-        tg.close();
-      });
-    }
-
     tg.expand();
+
+    function sendUrlToBot() {
+      const url = document.getElementById("urlInput").value;
+      if (url) {
+        tg.sendData(url);
+        tg.close();
+      } else {
+        alert("Please enter a URL first.");
+      }
+    }
   </script>
 </body>
 </html>
