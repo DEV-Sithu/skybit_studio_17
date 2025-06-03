@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>ChannelMyanmar WebApp</title>
@@ -7,60 +7,60 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #f2f2f2;
+      background: #f9f9f9;
     }
     h2 {
       text-align: center;
       color: #333;
     }
-    input[type="text"] {
+    input {
       width: 100%;
       padding: 12px;
       font-size: 16px;
-      margin: 10px 0;
-      box-sizing: border-box;
-      border: 2px solid #ccc;
-      border-radius: 8px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
     button {
       width: 100%;
+      margin-top: 10px;
       padding: 12px;
       background-color: #0088cc;
       color: white;
+      font-size: 16px;
       border: none;
-      font-size: 18px;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
     }
     a {
-      display: block;
       text-align: center;
-      margin: 20px 0;
-      font-size: 16px;
+      display: block;
+      margin-top: 20px;
       color: #0088cc;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h2>🌐 ChannelMyanmar URL Sender</h2>
+  <h2>🌐 ChannelMyanmar Link Sender</h2>
 
-  <a href="https://www.channelmyanmar.to" target="_blank">➡️ Go to ChannelMyanmar</a>
+  <a href="https://www.channelmyanmar.to" target="_blank">➡️ Open ChannelMyanmar</a>
 
-  <input type="text" id="urlInput" placeholder="Paste ChannelMyanmar URL here..." value="https://www.channelmyanmar.to">
+  <input type="text" id="urlInput" placeholder="Paste ChannelMyanmar URL here">
 
-  <button onclick="sendUrlToBot()">Send URL to Bot</button>
+  <button onclick="sendToBot()">Send URL to Bot</button>
 
   <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    function sendUrlToBot() {
+    function sendToBot() {
       const url = document.getElementById("urlInput").value;
       if (url) {
         tg.sendData(url);
         tg.close();
       } else {
-        alert("Please enter a URL first.");
+        alert("Please enter a URL.");
       }
     }
   </script>
